@@ -1,11 +1,10 @@
 # Esse é um script de bot com conversa guiada, a duda guiara todo os passos da conversa até a postagem da aula!
 
 from telegram import ReplyKeyboardMarkup, ReplyKeyboardRemove
-from telegram.utils.request import Request
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
-from datetime import datetime
 from spliteString import split_string
-
+from funDownload import download
+from time import time
 materia = assunto = ''
 
 
@@ -55,6 +54,7 @@ def get_assunto(update, context):
         update.message.reply_text('Muito legal sua aula é sobre {}'.format(assunto.lower()))
         update.message.reply_text('Estamos quase no fim!')
         update.message.reply_text('Agora eu só preciso do arquivo de audio da aula e logo a aula ja será postada!')
+        update.message.reply_text('O arquivo precisa ser em formato MP3 ou OGG')
         update.message.reply_text('Me envie o audio da aula:')
         return AUDIO
     else:
@@ -65,16 +65,15 @@ def get_assunto(update, context):
 
 #função que pega o audio e trabalha com esse audio
 def get_audio(update, context):
+    update.message.reply_text('Só um minutinho estou processando tudo...')
     audio = update.message.audio.get_file()
-    name_audio = f'{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}'
-    Request.download(url=audio.file_path,filename=name_audio)
-    print(name_audio, audio)
+    currente_date = time()
+    name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}'
+    download(url=f'{audio.file_path}',fileName=f'{name_audio}-audio-file.mp3')
+    print(name_audio)
+    update.message.reply_text(f'Seu audio {name_audio}')
     
-
-
-#função que pega o arquivo voice e trabalha com esse arquivo
-def get_voice(update, context):
-    pass
+    
 
 #funções para tratamento de erros no processo
 #Mandou uma palavra en vez de um audio.
@@ -82,6 +81,7 @@ def not_audio(update, context):
     if not update.message.text == 'cancelar':
         update.message.reply_text('Me desculpe eu estava esperando um audio')
         update.message.reply_text('Vamos tentar de novo!')
+        update.message.reply_text('O arquivo precisa ser em formato MP3 ou OGG')
         update.message.reply_text('Me envie o audio da aula:')
         return AUDIO
     else:
@@ -98,7 +98,7 @@ def cancel(update, context):
 
 # área de execução da duda
 def main():
-    duda = Updater('TOKEN_DA_DUDA', use_context=True)
+    duda = Updater('TOKEN_DUDA', use_context=True)
     dp = duda.dispatcher
     # add conversa guiada
     conv_handler = ConversationHandler(
@@ -114,7 +114,6 @@ def main():
             ASSUNTO:[MessageHandler(Filters.text & ~Filters.command, get_assunto)],
             AUDIO:[
                 MessageHandler(Filters.audio, get_audio), 
-                #MessageHandler(Filters.voice, get_voice), 
                 MessageHandler(Filters.text & ~Filters.command, not_audio)
             ]
         },
