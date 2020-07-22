@@ -4,7 +4,8 @@ from funDownload import download
 from time import time
 import os
 from os.path import join, dirname
-from dotenv import  load_dotenv
+from dotenv import load_dotenv
+from ibmWatson import Audio_To_Text
 
 #leitura dos arquivos .env
 dotenv_path = join(dirname(__file__), '.env')
@@ -73,10 +74,10 @@ def get_audio(update, context):
     update.message.reply_text('Só um minutinho estou processando tudo...')
     audio = update.message.audio.get_file()
     currente_date = time()
-    name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}'
-    download(url=f'{audio.file_path}', fileName=f'{name_audio}-audio-file.mp3')
-    print(name_audio)
+    name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
+    download(url=f'{audio.file_path}', fileName=name_audio)
     update.message.reply_text(f'Seu audio {name_audio}')
+    Audio_To_Text(name_audio)
     
     
 
@@ -116,9 +117,9 @@ def main():
             MessageHandler(Filters.text & ~Filters.command, start_2)
         ],
         states={
-            MATERIA:[MessageHandler(Filters.text & ~Filters.command, get_materia)],
-            ASSUNTO:[MessageHandler(Filters.text & ~Filters.command, get_assunto)],
-            AUDIO:[
+            MATERIA: [MessageHandler(Filters.text & ~Filters.command, get_materia)],
+            ASSUNTO: [MessageHandler(Filters.text & ~Filters.command, get_assunto)],
+            AUDIO: [
                 MessageHandler(Filters.audio, get_audio), 
                 MessageHandler(Filters.text & ~Filters.command, not_audio)
             ]
