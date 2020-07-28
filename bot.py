@@ -2,9 +2,12 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Conve
 from spliteString import split_string
 from funDownload import download
 from time import time
+from conversation import conversation
+
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
+
 from ibmWatson import Audio_To_Text
 
 #leitura dos arquivos .env
@@ -21,19 +24,18 @@ MATERIA, ASSUNTO, AUDIO = range(3)
 # duas funções para iniciar uma conversa com a duda, através de comandos ou palavras
 def start(update, context):
     user = update.message.from_user
-    update.message.reply_text('Olá, eu sou a Duda! Tudo bem com você? Estou aqui para disponibilizar suas aulas com conteúdos programáticos para o enem aos seus alunos, tudo pelo telefone e gratuito 🤗')
-    update.message.reply_text('Você pode cancelar o processo a qualquer momento escrevendo cancelar')
-    update.message.reply_text('Vamos lá!')
-    update.message.reply_text('Digame qual é a matéria da sua aula?')
+    update.message.reply_text(conversation['inicio'])
+    update.message.reply_text(conversation['inicio_2'])
+    update.message.reply_text(conversation['materia'])
+    return MATERIA
 
 def start_2(update, context):
     words = ['start', 'help', 'inicio', 'ajuda', 'oi', 'olá', 'ola', 'começar', 'hi', 'hello']
     for word in words:
         if word == update.message.text:
-            update.message.reply_text('Olá, eu sou a Duda! Tudo bem com você? Estou aqui para disponibilizar suas aulas com conteúdos programáticos para o enem aos seus alunos, tudo pelo telefone e gratuito 🤗')
-            update.message.reply_text('Você pode cancelar o processo a qualquer momento escrevendo cancelar')
-            update.message.reply_text('Vamos lá!')
-            update.message.reply_text('Digame qual é a matéria da sua aula?')
+            update.message.reply_text(conversation['inicio'])
+            update.message.reply_text(conversation['inicio_2'])
+            update.message.reply_text(conversation['materia'])
             return MATERIA
         elif word == words[-1]:
             update.message.reply_text('Me desculpa eu não sei o que fazer com esse comando, vamos tentar de novo, digite start ou /start para começarmos. 😉')
@@ -43,13 +45,12 @@ def get_materia(update, context):
     if not update.message.text == 'cancelar':
         global materia
         materia = update.message.text
-        update.message.reply_text(f'Legal ja sei que sua aula é de {materia.lower()}')
-        update.message.reply_text('Agora me diga qual o assunto da sua aula?')
+        update.message.reply_text(f'Legal ja sei que sua Disciplina é de {materia.lower()}')
+        update.message.reply_text(conversation['conteudo'])
         return ASSUNTO
     else:
-        update.message.reply_text('Ok')
-        update.message.reply_text('não quer mais postar a aula tudo bem.')
-        update.message.reply_text('assim que mudar de idéia volte a falar comgio estarei te esperando\n 😉')
+        update.message.reply_text(conversation['cancelar'])
+        update.message.reply_text(conversation['cancelar_2'])
         return ConversationHandler.END
 
 #função que resgata o assunto e passa os próximos comandos
@@ -57,16 +58,21 @@ def get_assunto(update, context):
     if not update.message.text == 'cancelar':
         global assunto
         assunto = update.message.text
-        update.message.reply_text(f'Muito legal sua aula é sobre {assunto.lower()}')
-        update.message.reply_text('Estamos quase no fim!')
-        update.message.reply_text('Agora eu só preciso do arquivo de audio da aula e logo a aula ja será postada!')
-        update.message.reply_text('O arquivo precisa ser em formato MP3 ou OGG')
-        update.message.reply_text('Me envie o audio da aula:')
+        update.message.reply_text(f'Muito legal o conteúdo da sua aula é sobre {assunto.lower()}')
+        update.message.reply_text(conversation['audio'])
+        update.message.reply_text(conversation['dicas'])
+        update.message.reply_text(conversation['dica_1'])
+        update.message.reply_text(conversation['dica_2'])
+        update.message.reply_text(conversation['dica_2.1'])
+        update.message.reply_text(conversation['dica_2.2'])
+        update.message.reply_text(conversation['dicas_2'])
+        update.message.reply_text(conversation['dica_3'])
+        update.message.reply_text(conversation['dica_4'])
+        update.message.reply_text(conversation['audio_2'])
         return AUDIO
     else:
-        update.message.reply_text('Ok')
-        update.message.reply_text('não quer mais postar a aula tudo bem.')
-        update.message.reply_text('assim que mudar de idéia volte a falar comgio estarei te esperando\n 😉')
+        update.message.reply_text(conversation['cancelar'])
+        update.message.reply_text(conversation['cancelar_2'])
         return ConversationHandler.END
 
 #função que pega o audio e trabalha com esse audio
@@ -85,20 +91,20 @@ def get_audio(update, context):
 #Mandou uma palavra en vez de um audio.
 def not_audio(update, context):
     if not update.message.text == 'cancelar':
-        update.message.reply_text('Me desculpe eu estava esperando um audio')
+        update.message.reply_text('Me desculpe eu estava esperando um arquivo de audio')
         update.message.reply_text('Vamos tentar de novo!')
-        update.message.reply_text('O arquivo precisa ser em formato MP3 ou OGG')
+        update.message.reply_text('O arquivo precisa ser em formato MP3.')
         update.message.reply_text('Me envie o audio da aula:')
         return AUDIO
     else:
-        update.message.reply_text('Ok')
-        update.message.reply_text('não quer mais postar a aula tudo bem.')
-        update.message.reply_text('assim que mudar de idéia volte a falar comgio estarei te esperando\n 😉')
+        update.message.reply_text(conversation['cancelar'])
+        update.message.reply_text(conversation['cancelar_2'])
         return ConversationHandler.END
 
 #função de cancelamento da conversa com a duda
 def cancel(update, context):
-    update.message.reply_text('Cancelado!')
+    update.message.reply_text(conversation['cancelar'])
+    update.message.reply_text(conversation['cancelar_2'])
     return ConversationHandler.END
 
 
