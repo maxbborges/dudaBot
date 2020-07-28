@@ -15,7 +15,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 
-materia = assunto = ''
+materia = assunto = name_audio = ''
 
 # ranges da conversa 
 MATERIA, ASSUNTO, AUDIO = range(3)
@@ -80,12 +80,22 @@ def get_audio(update, context):
     update.message.reply_text('Só um minutinho estou processando tudo...')
     audio = update.message.audio.get_file()
     currente_date = time()
+    global name_audio
     name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
     download(url=f'{audio.file_path}', fileName=name_audio)
     update.message.reply_text(f'Seu audio {name_audio}')
-    Audio_To_Text(name_audio)
+    #Audio_To_Text(name_audio)
     
-    
+#função de tratamento de voice
+def get_voice(update, context):
+    update.message.reply_text('Só um minutinho estou processando tudo...')
+    audio = update.message.voice.get_file()
+    currente_date = time()
+    global name_audio
+    name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
+    download(url=f'{audio.file_path}', fileName=name_audio)
+    update.message.reply_text(f'Seu audio {name_audio}')
+    #Audio_To_Text(name_audio))
 
 #funções para tratamento de erros no processo
 #Mandou uma palavra en vez de um audio.
@@ -126,7 +136,8 @@ def main():
             MATERIA: [MessageHandler(Filters.text & ~Filters.command, get_materia)],
             ASSUNTO: [MessageHandler(Filters.text & ~Filters.command, get_assunto)],
             AUDIO: [
-                MessageHandler(Filters.audio, get_audio), 
+                MessageHandler(Filters.audio, get_audio),
+                MessageHandler(Filters.voice, get_voice),
                 MessageHandler(Filters.text & ~Filters.command, not_audio)
             ]
         },
