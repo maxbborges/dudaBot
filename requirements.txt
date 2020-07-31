@@ -1,0 +1,6 @@
+Flask>=1.1.2
+cloudant==2.13.0
+requests>=2.22.0
+python-telegram-bot>=12.8
+python-dotenv>=0.14.0
+ibm-watson>=4.5.0
