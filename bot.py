@@ -31,8 +31,6 @@ MATERIA, ASSUNTO, AUDIO = range(3)
 #     return MATERIA
 
 def start_2(update, context):
-    # tratarAudio('aaa')
-    # return ''
     iniciar = ['/start','start', 'inicio', 'oi', 'olá', 'ola', 'começar', 'hi', 'hello']
     ajudar = ['/help','help','ajuda']
 
@@ -73,14 +71,14 @@ def get_assunto(update, context):
         assunto = update.message.text
         update.message.reply_text(f'Muito legal o conteúdo da sua aula é sobre {assunto.lower()}')
         update.message.reply_text(conversation['audio'])
-        update.message.reply_text(conversation['dicas'])
-        update.message.reply_text(conversation['dica_1'])
-        update.message.reply_text(conversation['dica_2'])
-        update.message.reply_text(conversation['dica_2.1'])
-        update.message.reply_text(conversation['dica_2.2'])
-        update.message.reply_text(conversation['dicas_2'])
-        update.message.reply_text(conversation['dica_3'])
-        update.message.reply_text(conversation['dica_4'])
+        # update.message.reply_text(conversation['dicas'])
+        # update.message.reply_text(conversation['dica_1'])
+        # update.message.reply_text(conversation['dica_2'])
+        # update.message.reply_text(conversation['dica_2.1'])
+        # update.message.reply_text(conversation['dica_2.2'])
+        # update.message.reply_text(conversation['dicas_2'])
+        # update.message.reply_text(conversation['dica_3'])
+        # update.message.reply_text(conversation['dica_4'])
         update.message.reply_text(conversation['audio_2'])
         return AUDIO
     else:
@@ -108,6 +106,7 @@ def get_voice(update, context):
     currente_date = time()
     # global name_audio
     tratarAudio(audio)
+    update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
     # name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
     # print (audio.file_path)
     # download(url=f'{audio.file_path}', fileName=name_audio)
@@ -137,10 +136,9 @@ def cancel(update, context):
 def tratarAudio(url_audio):
     dados = {'file_id':url_audio.file_unique_id,'file_path':url_audio.file_path,'materia':materia,'assunto':assunto}
     print (url_audio)
-    r = requests.post(os.environ.get("URL_SERVER"),data=json.dumps(dados))
-    # r = requests.post(os.environ.get("URL_SERVER"),data=url_audio)
+    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
     if r.status_code == 200:
-        print (r.text)
+        print ('ok')
     else:
         print ('y')
 
