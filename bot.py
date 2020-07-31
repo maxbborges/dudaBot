@@ -135,7 +135,7 @@ def cancel(update, context):
     return ConversationHandler.END
 
 def tratarAudio(url_audio):
-    dados = {'file_id':url_audio.file_unique_id,'file_path':url_audio.file_path}
+    dados = {'file_id':url_audio.file_unique_id,'file_path':url_audio.file_path,'materia':materia,'assunto':assunto}
     print (url_audio)
     r = requests.post(os.environ.get("URL_SERVER"),data=json.dumps(dados))
     # r = requests.post(os.environ.get("URL_SERVER"),data=url_audio)
