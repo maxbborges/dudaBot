@@ -30,7 +30,7 @@ def main():
 
     TWILIO_SID = os.environ.get('TWILIO_SID')
     TWILIO_TOKEN  = os.environ.get('TWILIO_TOKEN')
-    client = Client(TWILIO_SID, TWILIO_TOKEN)
+    client = Client('ACdbd1d522bfef46b2bef87bda83e2ade5', 'ccafb6318ff2094130d1613ce504d8b1')
 
     RECIPENT_NUMBER = dados['numeros']
     TWILIO_NUMBER = '+18566663241'
