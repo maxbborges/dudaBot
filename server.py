@@ -28,8 +28,8 @@ def main():
     resultado = insert(query,[nome_audio[:-4],dados['assunto'],dados['materia'],dados['file_path']])
     print (resultado)
 
-    TWILIO_SID = os.environ.get('TWILIO_SID')
-    TWILIO_TOKEN  = os.environ.get('TWILIO_TOKEN')
+    # TWILIO_SID = os.environ.get('TWILIO_SID')
+    # TWILIO_TOKEN  = os.environ.get('TWILIO_TOKEN')
     client = Client('ACdbd1d522bfef46b2bef87bda83e2ade5', 'ccafb6318ff2094130d1613ce504d8b1')
 
     RECIPENT_NUMBER = dados['numeros']
