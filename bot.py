@@ -91,27 +91,32 @@ def get_audio(update, context):
     update.message.reply_text('Só um minutinho estou processando tudo...')
     audio = update.message.audio.get_file()
     currente_date = time()
-    # global name_audio
-    tratarAudio(audio.file_path)
-    # name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
-    # print(audio.file_path)
-    # download(url=f'{audio.file_path}', fileName=name_audio)
-    # update.message.reply_text(f'Seu audio {name_audio}')
-    #Audio_To_Text(name_audio)
+
+    dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date}
+    update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
+    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
+
+    if r.status_code == 200:
+        print ('ok')
+    else:
+        print ('erro')
+
+
 
 #função de tratamento de voice
 def get_voice(update, context):
     update.message.reply_text('Só um minutinho estou processando tudo...')
     audio = update.message.voice.get_file()
     currente_date = time()
-    # global name_audio
-    tratarAudio(audio)
+
+    dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date}
     update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
-    # name_audio = f'{currente_date}-{audio.file_unique_id}-{update.message.from_user.id}-{materia.lower()}-{split_string(assunto)}-audio-file.mp3'
-    # print (audio.file_path)
-    # download(url=f'{audio.file_path}', fileName=name_audio)
-    # update.message.reply_text(f'Seu audio {name_audio}')
-    #Audio_To_Text(name_audio))
+    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
+
+    if r.status_code == 200:
+        print ('ok')
+    else:
+        print ('erro')
 
 #funções para tratamento de erros no processo
 #Mandou uma palavra en vez de um audio.
@@ -132,17 +137,6 @@ def cancel(update, context):
     update.message.reply_text(conversation['cancelar'])
     update.message.reply_text(conversation['cancelar_2'])
     return ConversationHandler.END
-
-def tratarAudio(url_audio):
-    dados = {'file_id':url_audio.file_unique_id,'file_path':url_audio.file_path,'materia':materia,'assunto':assunto}
-    print (url_audio)
-    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
-    if r.status_code == 200:
-        print ('ok')
-    else:
-        print ('y')
-
-
 
 # área de execução da duda
 def main():
