@@ -1,10 +1,9 @@
 conversation = {
     'inicio':' Olá professor, eu sou a Duda, sua assistente virtual. Conte comigo para se conectar aos seus alunos, a fim de que eles tenham acesso gratuito às suas áudio aulas com os conteúdos programáticos do ENEM. Ah! e a qualquer momento a operação pode ser parada, digite somente a palavra cancelar ou o comando /cancel.',
-    'inicio_2':'Vamos começar!',
 
     'ajuda':'Os sequintes comandos podem ser usados:',
 
-    'materia':'Por favor professor, me diga o nome da disciplina que iremos trabalhar, de acordo com o exemplo: Disciplina',
+    'materia':' Vamos começar! Por favor professor, me diga o nome da disciplina que iremos trabalhar, de acordo com o exemplo: Disciplina',
 
     'conteudo':'Por favor professor, me diga qual é o conteúdo da disciplina que estamos trabalhando, de acordo com o exemplo: Conteúdo',
 
@@ -23,6 +22,8 @@ conversation = {
 
     'cancelar':'não quer mais postar a aula tudo bem.',
     'cancelar_2':'assim que mudar de idéia volte a falar comgio estarei te esperando!',
+
+    'numeros':'digite os numeros:',
 
 
 }
