@@ -6,6 +6,10 @@ import json
 
 app = Flask(__name__, static_url_path='')
 
+@app.route("/",methods=['GET'])
+def apresentacao():
+    return 'apresentacao'
+
 @app.route("/tratarAudio", methods=['POST'])
 def main():
     dados = json.loads((request.data).decode('utf8').replace("'", '"'))
