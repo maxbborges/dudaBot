@@ -34,7 +34,7 @@ def main():
 
     RECIPENT_NUMBER = dados['numeros']
     TWILIO_NUMBER = '+18566663241'
-    SMS_MESSAGE = 'Acesse: '+os.environ.get("URL_SERVER")+'audio?id='+str(dados["horario"])+'-'+dados["file_id"]+' ou ligue para +18566663241 para ouvir sua aula de '+dados["materia"]+'-'+dados["assunto"]+'!'
+    SMS_MESSAGE = 'Acesse: https://hackdudabot.herokuapp.com/audio?id='+str(dados["horario"])+'-'+dados["file_id"]+' ou ligue para +18566663241 para ouvir sua aula de '+dados["materia"]+'-'+dados["assunto"]+'!'
 
     message = client.messages.create(
         to=RECIPENT_NUMBER,
