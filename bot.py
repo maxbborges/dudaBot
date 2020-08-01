@@ -31,6 +31,8 @@ def start(update, context):
 
 def start_2(update, context):
     words = ['start', 'help', 'inicio', 'ajuda', 'oi', 'olá', 'ola', 'começar', 'hi', 'hello']
+    print(update)
+    print(context)
     for word in words:
         if word == update.message.text:
             update.message.reply_text(conversation['inicio'])
