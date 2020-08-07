@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+servidor/__pycache__/
+cliente/__pycache__/
 
 # C extensions
 *.so

@@ -1,4 +1,7 @@
-from conexao import criar_conexao
+#Bibliotecas
+
+#Arquivos
+from servidor.conexao import criar_conexao
 
 def consulta(query):
     connection = criar_conexao()
