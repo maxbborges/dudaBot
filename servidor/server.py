@@ -20,7 +20,7 @@ app = Flask(__name__, static_url_path='')
 
 @app.route("/",methods=['GET','POST'])
 def apresentacao():
-    url = os.environ.get("URL_SERVER")
+    url = 'https://hackdudabot.herokuapp.com/'
     id_aula = request.args.get('id')
     client = Client('ACdbd1d522bfef46b2bef87bda83e2ade5', '5fa809a444d03865426283073985addc')
     call = client.calls.create(
@@ -57,7 +57,7 @@ def audio():
     id_aula = request.args.get('id')
     query ="SELECT url,materia,assunto FROM aulas where id = '"+id_aula+"'"
     linhas = consulta(query)
-    url = os.environ.get("URL_SERVER")
+    url = 'https://hackdudabot.herokuapp.com/'
     if linhas!={}:
         response = VoiceResponse()
         response.say("A aula de {}-{} será reproduzida em instantes.".format(linhas[0]['materia'],linhas[0]['assunto']), language='pt-BR')
