@@ -22,7 +22,7 @@ app = Flask(__name__, static_url_path='')
 def apresentacao():
     url = 'https://hackdudabot.herokuapp.com/'
     id_aula = request.args.get('id')
-    client = Client('ACdbd1d522bfef46b2bef87bda83e2ade5', '5fa809a444d03865426283073985addc')
+    client = Client('ACdbd1d522bfef46b2bef87bda83e2ade5', 'f148ff062d03edf381c69851aade6dd7')
     call = client.calls.create(
                         url=url+'aula?id='+id_aula,
                         to='+5561984185161',
