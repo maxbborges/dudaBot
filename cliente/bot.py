@@ -1,15 +1,16 @@
+#Bibliotecas
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, ConversationHandler
-from spliteString import split_string
-# from funDownload import download
 from time import time
-from conversation import conversation
-
 import json
 import requests
 import os
 from os.path import join, dirname
 from dotenv import load_dotenv
-from ibmWatson import Audio_To_Text
+
+#Arquivos
+from cliente.spliteString import split_string
+from cliente.conversation import conversation
+from cliente.ibmWatson import Audio_To_Text
 
 #leitura dos arquivos .env
 dotenv_path = join(dirname(__file__), '.env')
@@ -86,12 +87,12 @@ def enviar_sms(update,context):
 #função que pega o audio e trabalha com esse audio
 def get_audio(update, context):
     update.message.reply_text('Só um minutinho estou processando tudo...')
-    print (numeros)
     audio = update.message.audio.get_file()
     currente_date = time()
 
-    dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date}
+    dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date,'numeros':numeros}
     update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
+    update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula')
     r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
 
     if r.status_code == 200:
