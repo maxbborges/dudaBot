@@ -20,13 +20,14 @@ def main():
 @app.route("/ligar",methods=['GET','POST'])
 def apresentacao():
     url = configuracoes['URL_SERVER']
+    numero = request.args.get('numero')
     id_aula = request.args.get('id')
     print ('Criando sessão.')
     client = Client(b64decode(credenciais['TWILIO_SID']).decode('utf-8'), b64decode(credenciais['TWILIO_TOKEN']).decode('utf-8'))
 
     call = client.calls.create(
                         url=url+'aula?id='+id_aula,
-                        to='+5561984185161',
+                        to=numero,
                         from_=configuracoes['TWILIO_NUMBER']
                     )
     print ('Realizando ligação.')
