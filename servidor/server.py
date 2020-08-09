@@ -24,13 +24,13 @@ def apresentacao():
     print ('Criando sessão.')
     client = Client(b64decode(credenciais['TWILIO_SID']).decode('utf-8'), b64decode(credenciais['TWILIO_TOKEN']).decode('utf-8'))
 
-    # call = client.calls.create(
-    #                     url=url+'aula?id='+id_aula,
-    #                     to='+5561984185161',
-    #                     from_=configuracoes['TWILIO_NUMBER']
-    #                 )
-    # print ('Realizando ligação.')
-    # return ''
+    call = client.calls.create(
+                        url=url+'aula?id='+id_aula,
+                        to='+5561984185161',
+                        from_=configuracoes['TWILIO_NUMBER']
+                    )
+    print ('Realizando ligação.')
+    return ''
 
 @app.route("/tratarAudio", methods=['POST'])
 def tratarAudio():
