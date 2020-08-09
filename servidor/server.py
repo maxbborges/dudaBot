@@ -17,6 +17,13 @@ app = Flask(__name__, static_url_path='')
 def main():
     return 'ok'
 
+@app.route('/receber',methods=['GET'])
+def receber():
+    resposta = VoiceResponse()
+    resposta.say("Olá e um adeus!", voice='alice')
+    resposta = resposta.to_xml()
+    return resposta, 200, {'Content-Type': 'text/xml; charset=utf-8'}
+
 @app.route("/ligar",methods=['GET','POST'])
 def apresentacao():
     url = configuracoes['URL_SERVER']
