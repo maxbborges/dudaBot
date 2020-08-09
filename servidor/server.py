@@ -3,6 +3,7 @@ from flask import Flask, render_template, Response, request
 from time import time
 import requests
 import json
+from base64 import b64decode, b64encode
 from twilio.rest import Client
 from twilio.twiml.voice_response import Play, VoiceResponse
 
@@ -21,7 +22,7 @@ def apresentacao():
     url = configuracoes['URL_SERVER']
     id_aula = request.args.get('id')
     print ('Criando sessão.')
-    client = Client(credenciais['TWILIO_SID'], credenciais['TWILIO_TOKEN'])
+    client = Client(b64decode(credenciais['TWILIO_SID']).decode('utf-8'), b64decode(credenciais['TWILIO_TOKEN']).decode('utf-8'))
 
     call = client.calls.create(
                         url=url+'aula?id='+id_aula,

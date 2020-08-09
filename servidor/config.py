@@ -1,6 +1,6 @@
 credenciais = {
-'TWILIO_SID':'ACdbd1d522bfef46b2bef87bda83e2ade5',
-'TWILIO_TOKEN':'f148ff062d03edf381c69851aade6dd7'
+'TWILIO_SID':'QUNkYmQxZDUyMmJmZWY0NmIyYmVmODdiZGE4M2UyYWRlNQ',
+'TWILIO_TOKEN':'NDUzYzhlYjU2OTRiMzdlYWQ3YWQ1MDU2ZGYxYjNhMzM='
 }
 configuracoes = {
 'URL_SERVER2':"http://localhost:8000/",
