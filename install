@@ -3,3 +3,15 @@
 * rodar o ambiente virtual: pipenv shell
 * configurar o .env de acordo com o .env-example
 * pip install -r requirements.txt
+
+Rode o bot na pasta root com o comando: python3 -m cliente.bot
+Rode o server na pasta root com o comando: gunicorn servidor.server:app -b 0.0.0.0:8000
+
+endereços:
+http://localhost:8000/
+http://localhost:8000/tratarAudio # Usado para receber as requisições do cliente (telegram)
+http://localhost:8000/aula/?id=? # 
+http://localhost:8000/audio/?id=?
+
+Banco:
+heroku pg:psql postgresql-encircled-79589 --app hackdudabot

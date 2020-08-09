@@ -12,8 +12,8 @@ def criar_conexao():
             database='d6buuqaufl8aua',
             port='5432'
         )
-        print("Conexao realizada")
+        print("Conexao com o banco foi realizada com sucesso!")
     except Error as e:
-        print("Deu erro")
+        print("Deu erro. "+e)
 
     return connection
