@@ -3,19 +3,13 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Conve
 from time import time
 import json
 import requests
-import os
-from os.path import join, dirname
-from dotenv import load_dotenv
+from base64 import b64decode, b64encode
 
 #Arquivos
 from cliente.spliteString import split_string
 from cliente.conversation import conversation
 from cliente.ibmWatson import Audio_To_Text
-
-#leitura dos arquivos .env
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
-
+from cliente.config import credenciais,configuracoes
 
 materia = assunto = name_audio = ''
 numeros = ''
@@ -91,9 +85,9 @@ def get_audio(update, context):
     currente_date = time()
 
     dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date,'numeros':numeros}
-    update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
+    update.message.reply_text(f'Acesse: {configuracoes["URL_SERVER"]}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
     update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula')
-    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados))
+    r = requests.post(configuracoes["URL_SERVER"]+'tratarAudio',data=json.dumps(dados))
 
     if r.status_code == 200:
         print ('ok')
@@ -109,9 +103,9 @@ def get_voice(update, context):
     currente_date = time()
 
     dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date,'numeros':numeros}
-    update.message.reply_text(f'Acesse: {os.environ.get("URL_SERVER")}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
+    update.message.reply_text(f'Acesse: {configuracoes["URL_SERVER"]}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
     update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula')
-    r = requests.post(os.environ.get("URL_SERVER")+'tratarAudio',data=json.dumps(dados)) # requisição http post para o server passando os dados 
+    r = requests.post(configuracoes["URL_SERVER"]+'tratarAudio',data=json.dumps(dados)) # requisição http post para o server passando os dados
 
     if r.status_code == 200:
         print ('ok')
@@ -142,7 +136,7 @@ def cancel(update, context):
 
 # área de execução da duda
 def main():
-    token = os.environ.get("TOKEN_BOT")
+    token = b64decode(credenciais['TOKEN_BOT']).decode('utf-8')
     duda = Updater(token, use_context=True)
     dp = duda.dispatcher
 
