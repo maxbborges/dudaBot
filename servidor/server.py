@@ -49,7 +49,7 @@ def tratarAudio():
     # Grava em um arquivo as aulas
     query = "INSERT INTO aulas (id,assunto,materia,url) values (%s,%s,%s,%s);"
     resultado = insert(query,[nome_audio[:-4],dados['assunto'],dados['materia'],dados['file_path']])
-    client = Client(credenciais['TWILIO_SID'], credenciais['TWILIO_TOKEN'])
+    client = Client(b64decode(credenciais['TWILIO_SID']).decode('utf-8'), b64decode(credenciais['TWILIO_TOKEN']).decode('utf-8'))
 
     RECIPENT_NUMBER = dados['numeros']
     TWILIO_NUMBER = configuracoes['TWILIO_NUMBER']
