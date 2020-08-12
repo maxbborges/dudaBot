@@ -108,13 +108,15 @@ def get_voice(update, context):
 
     dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date,'numeros':numeros}
     update.message.reply_text(f'Acesse: {configuracoes["URL_SERVER"]}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
-    update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula')
+    update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula, se precisar é só me chamar novamente')
     r = requests.post(configuracoes["URL_SERVER"]+'tratarAudio',data=json.dumps(dados)) # requisição http post para o server passando os dados
 
     if r.status_code == 200:
         print ('ok')
+        return ConversationHandler.END
     else:
         print ('erro')
+        return ConversationHandler.END
 
     # return ConversationHandler.END
 
