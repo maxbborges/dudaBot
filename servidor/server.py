@@ -17,7 +17,7 @@ app = Flask(__name__, static_url_path='')
 def main():
     return 'ok'
 
-@app.route('/receber',methods=['GET'])
+@app.route('/receber',methods=['GET','POST'])
 def receber():
     resposta = VoiceResponse()
     resposta.say("Olá e um adeus!", voice='alice')

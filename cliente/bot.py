@@ -27,11 +27,15 @@ MATERIA, ASSUNTO, SMS, AUDIO = range(4)
 #     return MATERIA
 
 def start(update, context):
+    print ('Comando digitado: '+update.message.text)
+    print (update)
     iniciar = ['/start','start', 'inicio', 'oi', 'olá', 'ola', 'começar', 'hi', 'hello']
     ajudar = ['/help','help','ajuda']
 
-    for word in iniciar:
-        if word == update.message.text:
+    update.message.reply_text('Olá '+update.message.chat.first_name+', seu código de usuário é: '+str(update.message.chat.id))
+
+    for inicio in iniciar:
+        if inicio == update.message.text:
             update.message.reply_text(conversation['inicio'])
             update.message.reply_text(conversation['materia'])
             return MATERIA
@@ -143,10 +147,11 @@ def main():
     # Inicia o sistema e aguarda algum comando
     conv_handler = ConversationHandler(
         entry_points=[
+            # CommandHandler = Comandos com /
             CommandHandler('start', start),
             CommandHandler('help', start),
-            # CommandHandler('inicio', start_2),
-            # CommandHandler('ajuda', start),
+
+            # Comandos sem /
             MessageHandler(Filters.text & ~Filters.command, start)
         ],
         states={
@@ -161,6 +166,10 @@ def main():
         },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
+
+    print ('Bot Iniciado!')
+    print ('Aguardando comando...')
+
     dp.add_handler(conv_handler)
     duda.start_polling()
     duda.idle()
