@@ -19,10 +19,16 @@ def main():
 
 @app.route('/receber',methods=['GET','POST'])
 def receber():
-    resposta = VoiceResponse()
-    resposta.say("Olá e um adeus!", voice='alice')
-    resposta = resposta.to_xml()
-    return resposta, 200, {'Content-Type': 'text/xml; charset=utf-8'}
+    query ="SELECT id,url,materia,assunto FROM aulas ORDER BY id DESC LIMIT 1"
+    linhas = consulta(query)
+    if linhas!={}:
+        print ('Foi encontrado aula com o id referenciado. Criando página...')
+        response = VoiceResponse()
+        response.say("A aula de {}-{} será reproduzida em instantes.".format(linhas[0]['materia'],linhas[0]['assunto']), language='pt-BR')
+        response.play(configuracoes['URL_SERVER']+'audio?id='+str(linhas[0]['id']))
+        response = response.to_xml()
+        return response, 200, {'Content-Type': 'text/xml; charset=utf-8'}
+    return 'error'
 
 @app.route("/ligar",methods=['GET','POST'])
 def apresentacao():
