@@ -77,7 +77,7 @@ def get_assunto(update, context):
 
 def enviar_sms(update,context):
     global numeros
-    numeros = update.message.text
+    numeros = '+55'+update.message.text
     update.message.reply_text(conversation['audio'])
     update.message.reply_text(conversation['audio_2'])
     return AUDIO
@@ -90,7 +90,7 @@ def get_audio(update, context):
 
     dados = {'file_id':audio.file_unique_id,'file_path':audio.file_path,'materia':materia,'assunto':assunto,'horario':currente_date,'numeros':numeros}
     update.message.reply_text(f'Acesse: {configuracoes["URL_SERVER"]}audio?id={currente_date}-{audio.file_unique_id} para ouvir!')
-    update.message.reply_text(f'O numero: {numeros} já recebeu o sms com as devidas informações da aula')
+    update.message.reply_text(f'O numero: {numeros} já vai receber o sms com as devidas informações da aula!')
     r = requests.post(configuracoes["URL_SERVER"]+'tratarAudio',data=json.dumps(dados))
 
     if r.status_code == 200:
