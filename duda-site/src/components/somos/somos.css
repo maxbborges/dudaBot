@@ -1,0 +1,87 @@
+.somos{
+    height: 1800px;
+    background-color: #24005C;
+    padding-top: 40px;
+}
+
+.somos .title-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.somos .title-box img{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+.somos .title-box h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 67px;
+    color: #00D458;
+    margin-bottom: 15px;
+}
+
+.somos .title-box p{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FBFAFC;
+    margin-bottom: 25px;
+}
+
+.somos .equipe div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.somos .equipe img{
+    width: 150px;
+    height: 150px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+
+}
+
+.somos .equipe h3{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 19px;
+    color: #26FF80;
+    margin-bottom: 10px;
+}
+
+.somos .equipe p{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #26FF80;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) { 
+
+    .somos{
+        height: 600px;
+        background-color: #24005C;
+        padding-top: 40px;
+    }
+
+    .somos .equipe{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+}

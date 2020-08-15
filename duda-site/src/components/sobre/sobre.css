@@ -1,0 +1,63 @@
+.sobre{
+    height: 650px;
+    margin: 0;
+}
+
+.sobre h3 {
+    margin-top: 30px;
+    margin-bottom: 25px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+
+    /* Primary 1 */
+
+    color: #00D458;
+}
+
+.sobre .torre-container, .sobre .seta-container, .sobre .pessoas-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.sobre .torre, .sobre .pessoas {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+}
+
+.sobre .text-torre, .sobre .text-pessoas{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #24005C;
+}
+
+.sobre .seta{
+    width: 50px;
+    height: 50px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+@media (min-width: 992px) { 
+
+    .sobre{
+        height: 400px;
+        margin: 0;
+        background-image: url('../../assets/img/lapis.png');
+        background-size: contain;
+        background-position-x: right;
+        background-position-y: center;
+        background-repeat: no-repeat;
+    }
+
+}

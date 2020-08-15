@@ -1,0 +1,25 @@
+.bg-navbar {
+    background: linear-gradient(180deg, rgba(0, 251, 104, 0.45) 0%, rgba(255, 255, 255, 0) 100%), #330083;
+}
+
+.img-icon-educa {
+    width: 30px;
+    height: 30px;
+}
+
+.nav-link-opt {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12pt;
+    color: #00FB68;
+}
+
+.nav-link-opt:hover {
+    text-decoration: underline;
+}
+
+.logo span {
+    font-size: 10pt;
+    margin-left: 5px;
+}

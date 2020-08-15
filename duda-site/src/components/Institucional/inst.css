@@ -1,0 +1,70 @@
+.institucional{
+    height: 500px;
+    background-image: url('../../assets/img/bg-green.png');
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-position-x: right;
+    padding-top: 10px;
+}
+
+.institucional .slid-container h3 {
+    color: #24005C;
+    font-weight: bolder;
+}
+
+.institucional .text-slid{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #24005C;
+    margin-top: 10px;
+}
+
+.institucional .inst-title{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 58px;
+    text-align: center;
+    color: #FBFAFC;
+}
+
+.institucional .inst-icon{
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+}
+
+.institucional .inst-text{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #24005C;
+}
+
+.institucional .icons-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.institucional .icons-line{
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@media (min-width: 992px) { 
+
+    .institucional .inst-icon{
+        height: 150px;
+        width: 150px;
+        margin: 10px;
+    }
+}

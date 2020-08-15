@@ -1,0 +1,72 @@
+.banner {
+    height: 500px;
+    background-image: url('../../assets/img/bg-mobile.png');
+    background-position-y:top;
+    background-position-x:center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.banner .icon-blue {
+    width: 100px;
+    height: 100px;
+}
+
+.banner .icon-green {
+    width: 250;
+    height: 150;
+}
+
+.banner .title-banner{
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    color: #FBFAFC;
+}
+
+.banner .btn-contato {
+    background-color: #EB5757;
+    color: #FFF;
+    border: none;
+    border-radius: 35px;
+    width: 250px;
+    height: 60px;
+}
+
+.banner .banner-text {
+    font-family: Lato;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+
+    /* Secondary 0 */
+
+    color: #330083;
+}
+
+.row {
+    margin-top: 15px;
+}
+
+@media (min-width: 768px) { 
+
+    .banner{
+        background-image: url('../../assets/img/bg-desktop.png');
+    }
+
+    .banner .banner-text {
+        color: #00FB68;
+    }
+
+}
