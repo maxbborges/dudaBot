@@ -19,12 +19,12 @@ function Somos(){
                 <Col xs={12} md={4} className="title-box" >
                     <img src={QuebraCabeca} alt="quem somos" />
                     <h2>QUEM SOMOS</h2>
-                    <p>Uma galera gente boa e com skills complementares, disposta a inova e a expandir a educação se reuniu para fundar o Educa²</p>
+                    <p>Uma galera gente boa e com skills complementares, disposta a inovar e a expandir a educação se reuniu para fundar o Educa²</p>
                 </Col>
                 <Col xs={12} md={8} className="equipe">
                     <Col xs={12} md={4}>
                         <img src={andressa}/>
-                        <h3>ANDRESSA OLIVEIRA</h3>
+                        <h3>ANDRESA OLIVEIRA</h3>
                         <p>EDUCAÇÃO</p>
                     </Col>
                     <Col xs={12} md={4}>

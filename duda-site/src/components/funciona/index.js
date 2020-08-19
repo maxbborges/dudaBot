@@ -37,7 +37,7 @@ function Funciona(){
                 </Col>
                 <Col md={4} className="d-none d-md-flex icon-func">
                         <img src={chat} />
-                        <p>A mensagem conterá dados basicos da aula em um número telefônico para que os alunos tenham acesso ao conteúdo.</p>
+                        <p>A mensagem conterá dados básicos da aula em um número telefônico para que os alunos tenham acesso ao conteúdo.</p>
                 </Col>
             </Row>
 
