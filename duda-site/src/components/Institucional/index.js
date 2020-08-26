@@ -49,7 +49,7 @@ function Institucional(){
                         />
                         <Carousel.Caption>
                         <h3>VALORES</h3>
-                        <p className="text-slid" >Inovação da metodologia de ensino, cooperação, tranformação social através da educação.</p>
+                        <p className="text-slid" >Inovação da metodologia de ensino, cooperação e tranformação social através da educação.</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

@@ -18,7 +18,7 @@ function Surgiu(){
             <Row className="icons">
                 <Col xs={12} md={4}>
                     <img src={book} />
-                    <p>NECESSICADE DE DEMOCRATIZAÇÃO DO ENSINO</p>
+                    <p>NECESSIDADE DE DEMOCRATIZAÇÃO DO ENSINO</p>
                 </Col>
                 <Col xs={12} md={4}>
                     <img src={aluno} />

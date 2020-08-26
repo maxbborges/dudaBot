@@ -25,7 +25,7 @@ function Banner(){
             </Row>
             <Row>
                 <Col>
-                    <p className="banner-text" >Conectando alunos e professores de forma simples e democratica</p>
+                    <p className="banner-text" >Conectando alunos e professores de forma simples e democrática</p>
                 </Col>
             </Row>
             <Row>
