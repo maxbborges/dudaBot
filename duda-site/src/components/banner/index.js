@@ -1,9 +1,14 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import './banner.css'
 
 import IconBlue from '../../assets/icons/educa-blue.png'
 import IconGreen from '../../assets/icons/educa-green.png'
+
+function onClick(){
+    window.location.href="http://url.com";
+}
 
 function Banner(){
     return(
@@ -25,7 +30,9 @@ function Banner(){
             </Row>
             <Row>
                 <Col>
-                    <button className="btn-contato" >FALE COM A GENTE</button>
+                    <a target='_blank' href='https://wa.me/5521995018388?text=Olá Juliana do Educa2!'>
+                        <button className="btn-contato">FALE COM A GENTE</button>
+                    </a>
                 </Col>
             </Row>
             <Row className="d-none d-lg-block" >

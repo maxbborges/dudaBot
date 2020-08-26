@@ -1,4 +1,4 @@
-* sudo apt-get install python3-pip
+* sudo apt-get install python3-pip libpq-dev python-dev
 * instalar o ambiente virtual: sudo pip3 install pipenv
 * rodar o ambiente virtual: pipenv shell
 * configurar o .env de acordo com o .env-example
