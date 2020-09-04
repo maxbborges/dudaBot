@@ -9,7 +9,6 @@ import andressa from '../../assets/img/andressa-min.png'
 import juliana from '../../assets/img/juliana-min.png'
 import yuri from '../../assets/img/yuri-min.png'
 import max from '../../assets/img/max-min.png'
-import vini from '../../assets/img/vini-min.png'
 import ton from '../../assets/img/ton-min.png'
 
 function Somos(){
@@ -40,11 +39,6 @@ function Somos(){
                     <Col xs={12} md={4}>
                         <img src={max} />
                         <h3>MAXWELL BORGES</h3>
-                        <p>TECNOLOGIA</p>
-                    </Col>
-                    <Col xs={12} md={4}>
-                        <img src={vini} />
-                        <h3>VINICIO BREJINSKI</h3>
                         <p>TECNOLOGIA</p>
                     </Col>
                     <Col xs={12} md={4}>
